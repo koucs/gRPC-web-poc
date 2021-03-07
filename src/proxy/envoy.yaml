@@ -40,4 +40,4 @@ static_resources:
             address:
               socket_address:
                 address: server
-                port_value: 9091
+                port_value: 9090

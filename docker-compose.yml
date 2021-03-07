@@ -23,7 +23,7 @@ services:
         aliases:
           - server
     ports:
-      - "9090:9091"
+      - "9090:9090"
 
 networks:
   envoymesh: {}
