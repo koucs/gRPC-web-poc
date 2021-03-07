@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  proxy:
+    build:
+      context: ./src/proxy
+      dockerfile: Dockerfile
+    container_name: proxy
+    networks:
+      - envoymesh
+    ports:
+      - "8080:8080"
+
+  server:
+    build:
+      context: ./src/server
+      dockerfile: Dockerfile
+    container_name: server
+    # DOCKER : ENVOY - FRONT PROXY
+    # https://www.bogotobogo.com/DevOps/Docker/Docker-Envoy-Front-Proxy.php
+    networks:
+      envoymesh:
+        aliases:
+          - server
+    ports:
+      - "9090:9091"
+
+networks:
+  envoymesh: {}
