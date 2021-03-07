@@ -10,6 +10,7 @@ services:
       - envoymesh
     ports:
       - "8080:8080"
+      - "8081:8081"
 
   server:
     build:
@@ -24,6 +25,18 @@ services:
           - server
     ports:
       - "9090:9090"
+
+  greetserver:
+    build:
+      context: ./src/greetserver
+      dockerfile: Dockerfile
+    container_name: greetserver
+    networks:
+      envoymesh:
+        aliases:
+          - greetserver
+    ports:
+      - "9091:9091"
 
 networks:
   envoymesh: {}
