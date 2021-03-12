@@ -38,5 +38,10 @@ services:
     ports:
       - "9091:9091"
 
+  rust:
+    build:
+      context: ./src/rust
+      dockerfile: Dockerfile
+
 networks:
   envoymesh: {}
