@@ -1,21 +1,18 @@
 syntax = "proto3";
 
-option go_package = "gen;gen";
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
 
-import "google/api/annotations.proto";
+package helloworld;
 
-// Here is the overall greeting service definition where we define all our endpoints
+// The greeting service definition.
 service Greeter {
   // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {
-    option (google.api.http) = {
-      post: "/v1/example/echo"
-      body: "*"
-    };
-  }
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
 }
 
-// The request message containing the user's name
+// The request message containing the user's name.
 message HelloRequest {
   string name = 1;
 }

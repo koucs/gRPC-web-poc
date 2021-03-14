@@ -17,6 +17,7 @@
  */
 
 // Package main implements a client for Greeter service.
+// https://github.com/grpc/grpc-go/blob/master/examples/helloworld/greeter_client/main.go
 package main
 
 import (
@@ -30,6 +31,8 @@ import (
 )
 
 const (
+	// "proxy" is an alias of the network.
+	// It is defined at docker-compose.yml file
 	address     = "proxy:8080"
 	defaultName = "world"
 )

@@ -1,14 +1,15 @@
 # gRPC-web-poc
+
 POC of gRPC-web
 
 ### docker-compose command
 
 ```shell
-$ docker-compose build --no-cache greetserver
+$ docker-compose build --no-cache greetserver proxy
 ```
 
 ```
-$ docker-compose up -d greetserver
+$ docker-compose up -d greetserver proxy
 ```
 
 ### docker command
@@ -27,13 +28,20 @@ b403ba23b223        envoymesh           bridge              local
 ```
 
 ```shell
-$ docker run --rm -p 8080:8080 --network=envoymesh -it grpc-web-poc_proxy
+$ docker run --rm -p 8080:8080 --network=envoymesh --network-alias proxy -it grpc-web-poc_proxy
 ```
 
 ```shell
-$ docker run --rm -p 9090:9090 --network=envoymesh --network-alias server -it grpc-web-poc_server
+$ docker run --rm -p 9090:9090 --network=envoymesh --network-alias greetserver -it grpc-web-poc_greetserver
 ```
+#### React JS client App
 
 ```shell
-$ docker run --rm -p 9091:9091 --network=envoymesh --network-alias greetserver -it grpc-web-poc_proxy
+$ npx create-react-app client --template typescript
+
+$ cd client
+
+$ npm install grpc-web google-protobuf
 ```
+
+Refer [this](https://qiita.com/otanu/items/98d553d4b685a8419952).
