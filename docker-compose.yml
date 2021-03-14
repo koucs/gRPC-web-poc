@@ -7,11 +7,32 @@ services:
       dockerfile: Dockerfile
     container_name: proxy
     networks:
-      - envoymesh
+      envoymesh:
+        aliases:
+          - proxy
     ports:
       - "8080:8080"
-      - "8081:8081"
 
+  greetserver:
+    build:
+      context: ./src/greetserver
+      dockerfile: Dockerfile
+    container_name: greetserver
+    networks:
+      envoymesh:
+        aliases:
+          - greetserver
+    ports:
+      - "9091:9091"
+
+  greetclient:
+    build:
+      context: ./src/greetclient
+      dockerfile: Dockerfile
+    environment:
+      - GREET_CLIENT_NAME=hello 
+
+  ## これより下は hello worldのみ
   server:
     build:
       context: ./src/server
@@ -25,18 +46,6 @@ services:
           - server
     ports:
       - "9090:9090"
-
-  greetserver:
-    build:
-      context: ./src/greetserver
-      dockerfile: Dockerfile
-    container_name: greetserver
-    networks:
-      envoymesh:
-        aliases:
-          - greetserver
-    ports:
-      - "9091:9091"
 
   rust:
     build:
