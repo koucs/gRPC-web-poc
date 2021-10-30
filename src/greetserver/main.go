@@ -1,11 +1,11 @@
 package main
 
 import (
-    "log"
-    "net"
-    "context"
+	"context"
+	"log"
+	"net"
 
-    "google.golang.org/grpc"
+	"google.golang.org/grpc"
 	pb "google.golang.org/grpc/examples/helloworld/helloworld"
 )
 
@@ -17,10 +17,11 @@ const (
 type server struct {
 	pb.UnimplementedGreeterServer
 }
+
 // SayHello implements helloworld.GreeterServer
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	log.Printf("Received: %v", in.GetName())
-	return &pb.HelloReply{Message: "Hello " + in.GetName()}, nil
+	return &pb.HelloReply{Message: "Hello " + in.GetName() + " !!!!"}, nil
 }
 
 func main() {

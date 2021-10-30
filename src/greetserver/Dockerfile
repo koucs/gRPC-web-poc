@@ -1,7 +1,7 @@
 # Containerizing your Go Applications with Docker - Tutorial
 # https://github.com/juaruipav/grpc-go-docker-helloworld
 
-FROM golang:1.14
+FROM golang:1.15
 
 # Install grpc
 RUN go get -u google.golang.org/grpc && \
